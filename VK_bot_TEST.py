@@ -15,13 +15,13 @@ while True:
 
         def get_rasp():
             url = 'http://rasp.kolledgsvyazi.ru/spo.pdf'
-            f = open(r'D:\bot\rasp.pdf', "wb")  # открываем файл для записи, в режиме wb
+            f = open(r'rasp.pdf', "wb")  # открываем файл для записи, в режиме wb
             ufr = requests.get(url)  # делаем запрос
             f.write(ufr.content)  # записываем содержимое в файл; как видите - content запроса
             f.close()
             from pdf2jpg import pdf2jpg
-            inputpath = r"D:\bot\rasp.pdf"
-            outputpath = r"D:\bot"
+            inputpath = r"rasp.pdf"
+            outputpath = r""
             # to convert all pages
             result = pdf2jpg.convert_pdf2jpg(inputpath, outputpath, pages="ALL")
             print(result)
@@ -29,12 +29,12 @@ while True:
 
         def get_rasp2():
             url = 'http://rasp.kolledgsvyazi.ru/npo.pdf'
-            f = open(r'D:\bot\rasp2.pdf', "wb")  # открываем файл для записи, в режиме wb
+            f = open(r'rasp2.pdf', "wb")  # открываем файл для записи, в режиме wb
             ufr = requests.get(url)  # делаем запрос
             f.write(ufr.content)  # записываем содержимое в файл; как видите - content запроса
             f.close()
-            inputpath = r"D:\bot\rasp2.pdf"
-            outputpath = r"D:\bot"
+            inputpath = r"rasp2.pdf"
+            outputpath = r""
             # to convert all pages
             result = pdf2jpg.convert_pdf2jpg(inputpath, outputpath, pages="ALL")
             print(result)
@@ -89,22 +89,22 @@ while True:
                         try:
                             a = vk_session.method("photos.getMessagesUploadServer")
                             b = requests.post(a['upload_url'],
-                                              files={'photo': open('D:/bot/rasp.pdf_dir/0_rasp.pdf.jpg', 'rb')}).json()
+                                              files={'photo': open('rasp.pdf_dir/0_rasp.pdf.jpg', 'rb')}).json()
                             c = vk_session.method('photos.saveMessagesPhoto',
                                                   {'photo': b['photo'], 'server': b['server'], 'hash': b['hash']})[0]
                             d = "photo{}_{}".format(c["owner_id"], c["id"])
                             b2 = requests.post(a['upload_url'],
-                                               files={'photo': open('D:/bot/rasp2.pdf_dir/0_rasp2.pdf.jpg', 'rb')}).json()
+                                               files={'photo': open('rasp2.pdf_dir/0_rasp2.pdf.jpg', 'rb')}).json()
                             c2 = vk_session.method('photos.saveMessagesPhoto',
                                                    {'photo': b2['photo'], 'server': b2['server'], 'hash': b2['hash']})[0]
                             d2 = "photo{}_{}".format(c2["owner_id"], c2["id"])
                             b3 = requests.post(a['upload_url'],
-                                              files={'photo': open('D:/bot/rasp.pdf_dir/1_rasp.pdf.jpg', 'rb')}).json()
+                                              files={'photo': open('rasp.pdf_dir/1_rasp.pdf.jpg', 'rb')}).json()
                             c3 = vk_session.method('photos.saveMessagesPhoto',
                                                   {'photo': b3['photo'], 'server': b3['server'], 'hash': b3['hash']})[0]
                             d3 = "photo{}_{}".format(c3["owner_id"], c3["id"])
                             b4 = requests.post(a['upload_url'],
-                                              files={'photo': open('D:/bot/rasp2.pdf_dir/1_rasp2.pdf.jpg', 'rb')}).json()
+                                              files={'photo': open('rasp2.pdf_dir/1_rasp2.pdf.jpg', 'rb')}).json()
                             c4 = vk_session.method('photos.saveMessagesPhoto',
                                                   {'photo': b4['photo'], 'server': b4['server'], 'hash': b4['hash']})[0]
                             d4 = "photo{}_{}".format(c4["owner_id"], c4["id"])
@@ -116,13 +116,13 @@ while True:
                         except:
                             a = vk_session.method("photos.getMessagesUploadServer")
                             b = requests.post(a['upload_url'],
-                                              files={'photo': open('D:/bot/rasp.pdf_dir/0_rasp.pdf.jpg', 'rb')}).json()
+                                              files={'photo': open('rasp.pdf_dir/0_rasp.pdf.jpg', 'rb')}).json()
                             c = vk_session.method('photos.saveMessagesPhoto',
                                                   {'photo': b['photo'], 'server': b['server'], 'hash': b['hash']})[0]
                             d = "photo{}_{}".format(c["owner_id"], c["id"])
                             b2 = requests.post(a['upload_url'],
                                                files={
-                                                   'photo': open('D:/bot/rasp2.pdf_dir/0_rasp2.pdf.jpg', 'rb')}).json()
+                                                   'photo': open('rasp2.pdf_dir/0_rasp2.pdf.jpg', 'rb')}).json()
                             c2 = vk_session.method('photos.saveMessagesPhoto',
                                                    {'photo': b2['photo'], 'server': b2['server'], 'hash': b2['hash']})[
                                 0]
