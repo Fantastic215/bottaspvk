@@ -1,0 +1,5 @@
+requests
+wikipedia
+wikipedia.set_lang("RU")
+vk_api
+pdf2jpg
