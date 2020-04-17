@@ -94,8 +94,11 @@ while True:
                          'https://vk.com/fantasticfeed\n'
                          '____________________________\n'
                          'список команд:\n'
-                         '/user info\n/search wiki\n/rasp\n/info\n/sys info\n'
+                         '/user info\n/search wiki\n/rasp(сломана)\n/info\n/game(в разработке)\n'
                          'разрабатываются новые возможности.', peer_id)
+                    
+                elif s == '/game':
+                    send('разработка...', peer_id)
 
                 
                 elif s == '/rasp':
