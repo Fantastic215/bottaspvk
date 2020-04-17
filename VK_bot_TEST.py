@@ -2,6 +2,7 @@ import requests
 import wikipedia #Модуль Википедии
 wikipedia.set_lang("RU")
 import vk_api
+from vk_api import VkUpload 
 import os
 from pdf2jpg import pdf2jpg
 while True:
@@ -134,22 +135,18 @@ while True:
                                 )
                             vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
                         except:
-                            a = vk_session.method("photos.getMessagesUploadServer")
-                            b = requests.post(a['upload_url'],
-                                              files={'photo': open('0_rasp.pdf.jpg', 'rb')}).json()
-                            c = vk_session.method('photos.saveMessagesPhoto',
-                                                  {'photo': b['photo'], 'server': b['server'], 'hash': b['hash']})[0]
-                            d = "photo{}_{}".format(c["owner_id"], c["id"])
-                            b2 = requests.post(a['upload_url'],
-                                               files={
-                                                   'photo': open('0_rasp2.pdf.jpg', 'rb')}).json()
-                            c2 = vk_session.method('photos.saveMessagesPhoto',
-                                                   {'photo': b2['photo'], 'server': b2['server'], 'hash': b2['hash']})[
-                                0]
-                            d2 = "photo{}_{}".format(c2["owner_id"], c2["id"])
-                            vk.messages.send(  # Отправляем собщение
-                                peer_id=peer_id,
-                                attachment=[d, d2], random_id=123456
+                            attachments = []
+                            upload = VkUpload(vk_session)
+                            image_url = 'http://rasp.kolledgsvyazi.ru/spo.pdf'
+                            image = session.get(image_url, stream=True)
+                            photo = upload.photo_messages(photos=image.raw)[0]
+                            attachments.append(
+                                'photo{}_{}'.format(photo['owner_id'], photo['id'])
+                            )
+                            vk.messages.send(
+                                user_id=peer_id,
+                                attachment=','.join(attachments),
+                                message='Ваш текст'
                             )
                             vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
 
