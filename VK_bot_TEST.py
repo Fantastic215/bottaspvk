@@ -11,7 +11,7 @@ while True:
     try:
         session = requests.Session()
         token_vk=os.environ.get('BOT_TOKEN')
-        vk_session = vk_api.VkApi(token=str(token_vk),scope="messages")
+        vk_session = vk_api.VkApi(token=str(token_vk),scope="message")
 
         from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
