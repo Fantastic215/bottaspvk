@@ -26,6 +26,14 @@ while True:
             outputpath = r""
             # to convert all pages
             result = pdf2jpg.convert_pdf2jpg(inputpath, outputpath, pages="ALL")
+            
+            old_image = open('rasp.pdf_dir/0_rasp.pdf.jpg', 'r').read()
+            # Создаем новый файл
+            new_image = open('0_rasp.pdf.jpg', 'w')
+            # Сохраняем данные старой картинки в новую
+            new_image.write(old_image)
+            new_image.close()
+            
             print(result)
 
 
@@ -39,6 +47,14 @@ while True:
             outputpath = r""
             # to convert all pages
             result = pdf2jpg.convert_pdf2jpg(inputpath, outputpath, pages="ALL")
+            
+            old_image = open('rasp2.pdf_dir/0_rasp2.pdf.jpg', 'r').read()
+            # Создаем новый файл
+            new_image = open('0_rasp2.pdf.jpg', 'w')
+            # Сохраняем данные старой картинки в новую
+            new_image.write(old_image)
+            new_image.close()
+            
             print(result)
 
         def send(massage, peer_id):
