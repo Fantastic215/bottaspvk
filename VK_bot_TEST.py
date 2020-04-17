@@ -97,7 +97,7 @@ while True:
                                 )
                             vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
                         except:
-                            send("error\n " + str(E), peer_id)
+                            send("error\n " , peer_id)
                             vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
 
                     except Exception as E:
