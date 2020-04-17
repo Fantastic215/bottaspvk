@@ -2,10 +2,11 @@ import requests
 import wikipedia #Модуль Википедии
 wikipedia.set_lang("RU")
 import vk_api
+import os
 from pdf2jpg import pdf2jpg
 while True:
     try:
-        vk_session = vk_api.VkApi(token=str(BOT_TOKEN),scope="messages")
+        vk_session = vk_api.VkApi(token=str(os.environ.get('BOT_TOKEN'),scope="messages")
 
         from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
