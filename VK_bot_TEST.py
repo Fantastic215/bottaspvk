@@ -101,7 +101,18 @@ while True:
                     else:
                         send("нет доступа")
                         vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
-                
+                elif s == '/sys info':
+                    if peer_id == 165974848:
+                        try:
+                            info=os.getcwd()
+                            info1=os.listdir(path=".")
+                            send('текущая рабочая директория: '+str(info)+'\nfiles: '+info1, peer_id)
+                        except Exception ase:
+                            send("error\n " + str(ase), peer_id)
+                        vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
+                    else:
+                        send("нет доступа")
+                        vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
                 elif s == '/rasp':
                     get_rasp()
                     get_rasp2()
