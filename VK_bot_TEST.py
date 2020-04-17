@@ -25,7 +25,7 @@ while True:
                 keyboard.add_button("/rasp", color=VkKeyboardColor.NEGATIVE, payload=None)
                 vk.messages.send(  # Отправляем собщение
                             peer_id=peer_id,
-                            keyboard=keyboard.get_keyboard(),message='add keyboard', random_id=get_random_id())
+                            keyboard=keyboard.get_keyboard(),message='', random_id=get_random_id())
                
             except Exception as ecc:
                 vk.messages.send(  # Отправляем собщение
@@ -99,6 +99,7 @@ while True:
                         for event in longpoll.listen():
                             if event.type == VkBotEventType.MESSAGE_NEW and event.object['text']:
                                 send('Вот что я нашёл: \n' + str(wikipedia.summary(event.object['text'])), peer_id)
+                                key_b(peer_id)
                                 break
                     except Exception as exe:
                         send("error\nнеправильный запрос", peer_id)
