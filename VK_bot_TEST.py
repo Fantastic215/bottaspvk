@@ -99,7 +99,7 @@ while True:
                         send('🖕🏻иди нах🖕🏻', peer_id)
                     else:
                         send("нет доступа")
-                elif s == '/🖕🏻':
+                elif s == '/sys info':
                     if peer_id == 165974848:
                         info=os.getcwd()
                         info1=os.listdir(path=".")
