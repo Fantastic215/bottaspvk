@@ -17,9 +17,9 @@ while True:
         longpoll = VkBotLongPoll(vk_session, "194277538")
         vk = vk_session.get_api()
         vk_api.keyboard.VkKeyboard(one_time=True, inline=False)
-        add_button("/info", color=<VkKeyboardColor.POSITIVE : 'positive'>, payload=None)
-        add_button("/search wiki", color=<VkKeyboardColor.PRIMARY : 'primary'>, payload=None)
-        add_button("/rasp", color=<VkKeyboardColor.NEGATIVE : 'negative'>, payload=None)
+        add_button("/info", color='green', payload=None)
+        add_button("/search wiki", color='blue', payload=None)
+        add_button("/rasp", color='red', payload=None)
 
         def get_rasp():
             url = 'http://rasp.kolledgsvyazi.ru/spo.pdf'
