@@ -16,19 +16,21 @@ while True:
 
         longpoll = VkBotLongPoll(vk_session, "194277538")
         vk = vk_session.get_api()
-        try:
-            keyboard = vk_api.keyboard.VkKeyboard(one_time=True, inline=False)
-            keyboard.add_button("/info", color='positive', payload=None)
-            keyboard.add_button("/search wiki", color='primary', payload=None)
-            keyboard.add_button("/rasp", color='negative', payload=None)
-            vk.messages.send(  # Отправляем собщение
+        def key_b():
+            try:
+                keyboard = vk_api.keyboard.VkKeyboard(one_time=True, inline=False)
+                keyboard.add_button("/info", color='positive', payload=None)
+                keyboard.add_button("/search wiki", color='primary', payload=None)
+                keyboard.add_button("/rasp", color='negative', payload=None)
+                vk.messages.send(  # Отправляем собщение
+                            peer_id=peer_id,
+                            keyboard=keyboard.get_keyboard(), random_id=123456)
+                vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
+            except Exception as ecc:
+                vk.messages.send(  # Отправляем собщение
                         peer_id=peer_id,
-                        keyboard=keyboard.get_keyboard(), random_id=123456)
-            vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
-        except Exception as ecc:
-            vk.messages.send(  # Отправляем собщение
-                    peer_id=peer_id,
-                    message=str(ecc), random_id=123456)
+                        message=str(ecc), random_id=123456)
+                vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
         def get_rasp():
             url = 'http://rasp.kolledgsvyazi.ru/spo.pdf'
             f = open(r'rasp.pdf', "wb")  # открываем файл для записи, в режиме wb
@@ -79,6 +81,7 @@ while True:
 
         for event in longpoll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW and event.object['text']:
+                key_b()
                 s = event.object['text']
                 # Слушаем longpoll, если пришло сообщение то:
                 peer_id = event.obj['peer_id']
