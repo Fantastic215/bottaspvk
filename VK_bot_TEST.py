@@ -25,7 +25,7 @@ while True:
                 keyboard.add_button("/rasp", color=VkKeyboardColor.NEGATIVE, payload=None)
                 vk.messages.send(  # Отправляем собщение
                             peer_id=peer_id,
-                            keyboard=keyboard.get_keyboard(), random_id=get_random_id())
+                            keyboard=keyboard.get_keyboard(),message='add keyboard', random_id=get_random_id())
                
             except Exception as ecc:
                 vk.messages.send(  # Отправляем собщение
@@ -86,7 +86,8 @@ while True:
                 s = event.object['text']
                 # Слушаем longpoll, если пришло сообщение то:
                 peer_id = event.obj['peer_id']
-                key_b(peer_id)
+                if s[0]=='/k_on':
+                    key_b(peer_id)
                 if s == '/user info':  # Если написали заданную фразу
                     if peer_id<2000000000:
                         send('ваш id- ' + str(peer_id), peer_id)
