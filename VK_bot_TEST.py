@@ -19,9 +19,13 @@ while True:
             f = open(r'rasp.pdf', "wb")  # открываем файл для записи, в режиме wb
             ufr = requests.get(url)  # делаем запрос
             f.write(ufr.content)  # записываем содержимое в файл; как видите - content запроса
-            return f
             f.close()
-            
+            from pdf2jpg import pdf2jpg
+            inputpath = r"rasp.pdf"
+            outputpath = r""
+            # to convert all pages
+            result = pdf2jpg.convert_pdf2jpg(inputpath, outputpath, pages="ALL")
+            print(result)
 
 
         def get_rasp2():
@@ -29,8 +33,12 @@ while True:
             f = open(r'rasp2.pdf', "wb")  # открываем файл для записи, в режиме wb
             ufr = requests.get(url)  # делаем запрос
             f.write(ufr.content)  # записываем содержимое в файл; как видите - content запроса
-            retutn f
             f.close()
+            inputpath = r"rasp2.pdf"
+            outputpath = r""
+            # to convert all pages
+            result = pdf2jpg.convert_pdf2jpg(inputpath, outputpath, pages="ALL")
+            print(result)
 
         def send(massage, peer_id):
             vk.messages.send(  # Отправляем собщение
@@ -82,22 +90,48 @@ while True:
                         try:
                             a = vk_session.method("photos.getMessagesUploadServer")
                             b = requests.post(a['upload_url'],
-                                              files={'photo': open(get_rasp(), 'rb')}).json()
+                                              files={'photo': open('0_rasp.pdf.jpg', 'rb')}).json()
                             c = vk_session.method('photos.saveMessagesPhoto',
                                                   {'photo': b['photo'], 'server': b['server'], 'hash': b['hash']})[0]
                             d = "photo{}_{}".format(c["owner_id"], c["id"])
                             b2 = requests.post(a['upload_url'],
-                                               files={'photo': open(get_rasp2, 'rb')}).json()
+                                               files={'photo': open('0_rasp2.pdf.jpg', 'rb')}).json()
                             c2 = vk_session.method('photos.saveMessagesPhoto',
                                                    {'photo': b2['photo'], 'server': b2['server'], 'hash': b2['hash']})[0]
                             d2 = "photo{}_{}".format(c2["owner_id"], c2["id"])
+                            b3 = requests.post(a['upload_url'],
+                                              files={'photo': open('1_rasp.pdf.jpg', 'rb')}).json()
+                            c3 = vk_session.method('photos.saveMessagesPhoto',
+                                                  {'photo': b3['photo'], 'server': b3['server'], 'hash': b3['hash']})[0]
+                            d3 = "photo{}_{}".format(c3["owner_id"], c3["id"])
+                            b4 = requests.post(a['upload_url'],
+                                              files={'photo': open('1_rasp2.pdf.jpg', 'rb')}).json()
+                            c4 = vk_session.method('photos.saveMessagesPhoto',
+                                                  {'photo': b4['photo'], 'server': b4['server'], 'hash': b4['hash']})[0]
+                            d4 = "photo{}_{}".format(c4["owner_id"], c4["id"])
                             vk.messages.send(  # Отправляем собщение
                                     peer_id=peer_id,
-                                    attachment=[d,d2], random_id=123456
+                                    attachment=[d,d2,d3,d4], random_id=123456
                                 )
                             vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
                         except:
-                            send("error\n " , peer_id)
+                            a = vk_session.method("photos.getMessagesUploadServer")
+                            b = requests.post(a['upload_url'],
+                                              files={'photo': open('0_rasp.pdf.jpg', 'rb')}).json()
+                            c = vk_session.method('photos.saveMessagesPhoto',
+                                                  {'photo': b['photo'], 'server': b['server'], 'hash': b['hash']})[0]
+                            d = "photo{}_{}".format(c["owner_id"], c["id"])
+                            b2 = requests.post(a['upload_url'],
+                                               files={
+                                                   'photo': open('0_rasp2.pdf.jpg', 'rb')}).json()
+                            c2 = vk_session.method('photos.saveMessagesPhoto',
+                                                   {'photo': b2['photo'], 'server': b2['server'], 'hash': b2['hash']})[
+                                0]
+                            d2 = "photo{}_{}".format(c2["owner_id"], c2["id"])
+                            vk.messages.send(  # Отправляем собщение
+                                peer_id=peer_id,
+                                attachment=[d, d2], random_id=123456
+                            )
                             vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
 
                     except Exception as E:
