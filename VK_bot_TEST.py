@@ -16,10 +16,14 @@ while True:
 
         longpoll = VkBotLongPoll(vk_session, "194277538")
         vk = vk_session.get_api()
-        vk_api.keyboard.VkKeyboard(one_time=True, inline=False)
-        add_button("/info", color='positive', payload=None)
-        add_button("/search wiki", color='primary', payload=None)
-        add_button("/rasp", color='negative', payload=None)
+        keyboard = vk_api.keyboard.VkKeyboard(one_time=True, inline=False)
+        keyboard.add_button("/info", color='positive', payload=None)
+        keyboard.add_button("/search wiki", color='primary', payload=None)
+        keyboard.add_button("/rasp", color='negative', payload=None)
+        vk.messages.send(  # Отправляем собщение
+                    peer_id=peer_id,
+                    keyboard=keyboard.get_keyboard(), random_id=123456)
+        vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
 
         def get_rasp():
             url = 'http://rasp.kolledgsvyazi.ru/spo.pdf'
