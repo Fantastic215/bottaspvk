@@ -6,7 +6,8 @@ import os
 from pdf2jpg import pdf2jpg
 while True:
     try:
-        vk_session = vk_api.VkApi(token="29a19f8c539a7ad2ff7ed2c8df51328fbc5473097d60a55dd5a40132ab664ed50610428c78f98e5c3ddd0",scope="messages")
+        token_vk=os.environ.get('BOT_TOKEN')
+        vk_session = vk_api.VkApi(token=str(token_vk),scope="messages")
 
         from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
