@@ -6,7 +6,7 @@ from vk_api import VkUpload
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import os
 from pdf2jpg import pdf2jpg
-
+from vk_api.utils import get_random_id
 while True:
     try:
         session = requests.Session()
@@ -25,13 +25,13 @@ while True:
                 keyboard.add_button("/rasp", color=VkKeyboardColor.NEGATIVE, payload=None)
                 vk.messages.send(  # Отправляем собщение
                             peer_id=peer_id,
-                            keyboard=keyboard.get_keyboard(), random_id=123456)
-                vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
+                            keyboard=keyboard.get_keyboard(),message='add keyboard', random_id=get_random_id())
+               
             except Exception as ecc:
                 vk.messages.send(  # Отправляем собщение
                         peer_id=peer_id,
-                        message=str(ecc), random_id=123456)
-                vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
+                        message=str(ecc), random_id=get_random_id())
+                
         def get_rasp():
             url = 'http://rasp.kolledgsvyazi.ru/spo.pdf'
             f = open(r'rasp.pdf', "wb")  # открываем файл для записи, в режиме wb
@@ -77,8 +77,8 @@ while True:
         def send(massage, peer_id):
             vk.messages.send(  # Отправляем собщение
                     peer_id=peer_id,
-                    message=massage, random_id=123456)
-            vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
+                    message=massage, random_id=get_random_id())
+            
 
         for event in longpoll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW and event.object['text']:
@@ -130,12 +130,12 @@ while True:
                             vk.messages.send(
                                 peer_id=peer_id,
                                 attachment=','.join(attachments),
-                                message='test', random_id=123456
+                                message='test', random_id=get_random_id()
                             )
 
                     except Exception as E:
                         send("error\n " + str(E), peer_id)
-                        vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
+                        
 
 
                 elif s[0]=='/':
