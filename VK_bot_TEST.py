@@ -101,7 +101,7 @@ while True:
                             attachments = []
                             upload = VkUpload(vk_session)
                             image_url = 'https://klike.net/uploads/posts/2019-06/medium/1560661366_2.jpg'
-                            image = session.get(image_url, stream=True)
+                            image = vk.get(image_url, stream=True)
                             photo = upload.photo_messages(photos=image.raw)[0]
                             attachments.append(
                                 'photo{}_{}'.format(photo['owner_id'], photo['id'])
