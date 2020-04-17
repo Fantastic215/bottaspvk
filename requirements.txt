@@ -2,4 +2,3 @@ requests
 wikipedia
 vk_api
 pdf2jpg
-os
