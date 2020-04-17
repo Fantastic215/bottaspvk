@@ -111,7 +111,7 @@ while True:
                             vk.messages.send(
                                 peer_id=peer_id,
                                 attachment=','.join(attachments),
-                                message='test'
+                                message='test', random_id=123456
                             )
 
                     except Exception as E:
