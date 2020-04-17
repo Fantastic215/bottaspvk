@@ -91,7 +91,7 @@ while True:
                          'https://vk.com/fantasticfeed\n'
                          '____________________________\n'
                          'список команд:\n'
-                         '/user info\n/search wiki\n/rasp\n/info\n'
+                         '/user info\n/search wiki\n/rasp\n/info\n/sys info\n'
                          'разрабатываются новые возможности.', peer_id)
 
                 elif s == '/🖕🏻':
@@ -99,6 +99,7 @@ while True:
                         send('🖕🏻иди нах🖕🏻', peer_id)
                     else:
                         send("нет доступа")
+                        
                 elif s == '/sys info':
                     if peer_id == 165974848:
                         info=os.getcwd()
