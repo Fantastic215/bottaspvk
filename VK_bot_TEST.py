@@ -5,8 +5,10 @@ import vk_api
 from vk_api import VkUpload 
 import os
 from pdf2jpg import pdf2jpg
+
 while True:
     try:
+        session = requests.Session()
         token_vk=os.environ.get('BOT_TOKEN')
         vk_session = vk_api.VkApi(token=str(token_vk),scope="messages")
 
@@ -101,17 +103,16 @@ while True:
                             attachments = []
                             upload = VkUpload(vk_session)
                             image_url = 'https://klike.net/uploads/posts/2019-06/medium/1560661366_2.jpg'
-                            image = vk.get(image_url, stream=True)
+                            image = session.get(image_url, stream=True)
                             photo = upload.photo_messages(photos=image.raw)[0]
                             attachments.append(
                                 'photo{}_{}'.format(photo['owner_id'], photo['id'])
                             )
                             vk.messages.send(
-                                user_id=peer_id,
+                                peer_id=peer_id,
                                 attachment=','.join(attachments),
-                                message='Ваш текст'
+                                message='test'
                             )
-                            vk.messages.deleteConversation(peer_id=peer_id, group_id=194277538)
 
                     except Exception as E:
                         send("error\n " + str(E), peer_id)
