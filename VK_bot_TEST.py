@@ -16,7 +16,7 @@ while True:
 
         longpoll = VkBotLongPoll(vk_session, "194277538")
         vk = vk_session.get_api()
-        def key_b():
+        def key_b(peer_id):
             try:
                 keyboard = vk_api.keyboard.VkKeyboard(one_time=True, inline=False)
                 keyboard.add_button("/info", color='positive', payload=None)
@@ -81,10 +81,11 @@ while True:
 
         for event in longpoll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW and event.object['text']:
-                key_b()
+                
                 s = event.object['text']
                 # Слушаем longpoll, если пришло сообщение то:
                 peer_id = event.obj['peer_id']
+                key_b(peer_id)
                 if s == '/user info':  # Если написали заданную фразу
                     if peer_id<2000000000:
                         send('ваш id- ' + str(peer_id), peer_id)
