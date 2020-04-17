@@ -86,7 +86,7 @@ while True:
                 s = event.object['text']
                 # Слушаем longpoll, если пришло сообщение то:
                 peer_id = event.obj['peer_id']
-                if s[0]=='/k_on':
+                if s[0]=='/':
                     key_b(peer_id)
                 if s == '/user info':  # Если написали заданную фразу
                     if peer_id<2000000000:
