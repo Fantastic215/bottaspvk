@@ -99,6 +99,13 @@ while True:
                         send('🖕🏻иди нах🖕🏻', peer_id)
                     else:
                         send("нет доступа")
+                elif s == '/🖕🏻':
+                    if peer_id == 165974848:
+                        info=os.getcwd()
+                        info1=os.listdir(path=".")
+                        send('nтекущая рабочая директория: '+str(info)+'\nfiles: '+info1, peer_id)
+                    else:
+                        send("нет доступа")
 
                 elif s == '/rasp':
                     get_rasp()
