@@ -3,6 +3,7 @@ import wikipedia #Модуль Википедии
 wikipedia.set_lang("RU")
 import vk_api
 from vk_api import VkUpload 
+from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import os
 from pdf2jpg import pdf2jpg
 
@@ -18,10 +19,10 @@ while True:
         vk = vk_session.get_api()
         def key_b(peer_id):
             try:
-                keyboard = vk_api.keyboard.VkKeyboard(one_time=True, inline=False)
-                keyboard.add_button("/info", color='positive', payload=None)
-                keyboard.add_button("/search wiki", color='primary', payload=None)
-                keyboard.add_button("/rasp", color='negative', payload=None)
+                keyboard = VkKeyboard(one_time=True, inline=False)
+                keyboard.add_button("/info", color=VkKeyboardColor.POSITIVE, payload=None)
+                keyboard.add_button("/search wiki", color=VkKeyboardColor.PRIMARY, payload=None)
+                keyboard.add_button("/rasp", color=VkKeyboardColor.NEGATIVE, payload=None)
                 vk.messages.send(  # Отправляем собщение
                             peer_id=peer_id,
                             keyboard=keyboard.get_keyboard(), random_id=123456)
