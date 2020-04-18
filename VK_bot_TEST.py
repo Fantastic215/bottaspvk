@@ -88,12 +88,12 @@ while True:
                 peer_id = event.obj['peer_id']
                 if s[0]=='/':
                     key_b(peer_id)
-                if s == '/user info':  # Если написали заданную фразу
+                if s == '/user info' or s=='@club194277538 /user info':  # Если написали заданную фразу
                     if peer_id<2000000000:
                         send('ваш id- ' + str(peer_id), peer_id)
                     else:
                         send("работает только в лс",peer_id)
-                elif s == '/search wiki':  # Если написали заданную фразу
+                elif s == '/search wiki' or s=='@club194277538 /search wiki':  # Если написали заданную фразу
                     send('введите запрос ', peer_id)
                     try:
                         for event in longpoll.listen():
@@ -110,7 +110,7 @@ while True:
                             send(str(exe), peer_id)
 
 
-                elif s == '/info':
+                elif s == '/info' or s=='@club194277538 /info':
                     send('бота написал\n'
                          'https://vk.com/fantasticfeed\n'
                          '____________________________\n'
@@ -122,7 +122,7 @@ while True:
                     send('разработка...', peer_id)
 
                 
-                elif s == '/rasp':
+                elif s == '/rasp' or s=='@club194277538 /rasp':
                     try:
                             attachments = []
                             upload = VkUpload(vk_session)
