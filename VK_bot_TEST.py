@@ -126,7 +126,7 @@ while True:
                     try:
                             attachments = []
                             upload = VkUpload(vk_session)
-                            image_url = 'https://klike.net/uploads/posts/2019-06/medium/1560661366_2.jpg'
+                            image_url = 'https://prolab-beauty.ru/images/blog/4/techrab-800x600.jpg'
                             image = session.get(image_url, stream=True)
                             photo = upload.photo_messages(photos=image.raw)[0]
                             attachments.append(
