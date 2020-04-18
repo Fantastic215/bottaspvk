@@ -103,6 +103,7 @@ while True:
                                 break
                     except Exception as exe:
                         send("error\nнеправильный запрос", peer_id)
+                        key_b(peer_id)
                         if peer_id == 165974848:
                             send(str(exe), peer_id)
 
