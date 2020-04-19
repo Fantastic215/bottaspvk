@@ -125,17 +125,16 @@ while True:
                 
                 elif s == '/rasp' or s=='@club194277538 /rasp':
                     try:
-                            attachments = []
-                            upload = VkUpload(vk_session)
-                            image_url = 'https://prolab-beauty.ru/images/blog/4/techrab-800x600.jpg'
-                            image = session.get(image_url, stream=True)
-                            photo = upload.photo_messages(photos=image.raw)[0]
-                            attachments.append(
-                                'photo{}_{}'.format(photo['owner_id'], photo['id'])
-                            )
-                            vk.messages.send(
+                        
+                        a = vk_session.method("photos.getMessagesUploadServer")
+                        b = requests.post(a['upload_url'],
+                                              files={'photo': BytesIO(open('0_rasp.pdf.jpg'), 'rb')}).json()
+                        c = vk_session.method('photos.saveMessagesPhoto',
+                                                  {'photo': b['photo'], 'server': b['server'], 'hash': b['hash']})[0]
+                        d = "photo{}_{}".format(c["owner_id"], c["id"])
+                        vk.messages.send(
                                 peer_id=peer_id,
-                                attachment=','.join(attachments),
+                                attachment=d,
                                  random_id=get_random_id()
                             )
 
