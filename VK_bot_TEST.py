@@ -129,7 +129,7 @@ while True:
                         
                         a = vk_session.method("photos.getMessagesUploadServer")
                         b = requests.post(a['upload_url'],
-                                              files={'photo': BytesIO(open('0_rasp.pdf.jpg', 'r'))}).json()
+                                              files={'photo': BytesIO(open('0_rasp.pdf.jpg', 'r').encode())}).json()
                         c = vk_session.method('photos.saveMessagesPhoto',
                                                   {'photo': b['photo'], 'server': b['server'], 'hash': b['hash']})[0]
                         d = "photo{}_{}".format(c["owner_id"], c["id"])
