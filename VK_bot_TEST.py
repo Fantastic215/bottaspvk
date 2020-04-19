@@ -7,6 +7,7 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import os
 from pdf2jpg import pdf2jpg
 from vk_api.utils import get_random_id
+from io import BytesIO
 while True:
     try:
         session = requests.Session()
