@@ -126,10 +126,10 @@ while True:
                 
                 elif s == '/rasp' or s=='@club194277538 (Расписание) /rasp':
                     try:
-                        
+                        files = [('file', ('0_rasp.pdf.jpg', open('0_rasp.pdf.jpg', 'rb')))]
                         a = vk_session.method("photos.getMessagesUploadServer")
                         b = requests.post(a['upload_url'],
-                                              files={'photo': BytesIO(open('0_rasp.pdf.jpg', 'rb'))}).json()
+                                              files={'photo': files, 'rb'))}).json()
                         c = vk_session.method('photos.saveMessagesPhoto',
                                                   {'photo': b['photo'], 'server': b['server'], 'hash': b['hash']})[0]
                         d = "photo{}_{}".format(c["owner_id"], c["id"])
