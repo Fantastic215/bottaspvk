@@ -112,7 +112,7 @@ while True:
                             send(str(exe), peer_id)
 
 
-                elif s == '/info' or s=='@club194277538 /info':
+                elif s == '/info' or s=='Расписание, /info':
                     send('бота написал\n'
                          'https://vk.com/fantasticfeed\n'
                          '____________________________\n'
