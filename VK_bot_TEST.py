@@ -19,18 +19,18 @@ while True:
         longpoll = VkBotLongPoll(vk_session, "194277538")
         vk = vk_session.get_api()
         def key_b(peer_id):
-            if peer_id<2000000000:
-                try:
-                    keyboard = VkKeyboard(one_time=True, inline=False)
-                    keyboard.add_button("/info", color=VkKeyboardColor.POSITIVE, payload=None)
-                    keyboard.add_button("/search wiki", color=VkKeyboardColor.PRIMARY, payload=None)
-                    keyboard.add_button("/rasp", color=VkKeyboardColor.NEGATIVE, payload=None)
-                    vk.messages.send(  # Отправляем собщение
+            #if peer_id<2000000000:
+            try:
+                keyboard = VkKeyboard(one_time=True, inline=False)
+                keyboard.add_button("/info", color=VkKeyboardColor.POSITIVE, payload=None)
+                keyboard.add_button("/search wiki", color=VkKeyboardColor.PRIMARY, payload=None)
+                keyboard.add_button("/rasp", color=VkKeyboardColor.NEGATIVE, payload=None)
+                vk.messages.send(  # Отправляем собщение
                                 peer_id=peer_id,
                                 keyboard=keyboard.get_keyboard(),message='  ', random_id=get_random_id())
 
-                except Exception as ecc:
-                    vk.messages.send(  # Отправляем собщение
+            except Exception as ecc:
+                vk.messages.send(  # Отправляем собщение
                             peer_id=peer_id,
                             message=str(ecc), random_id=get_random_id())
                 
