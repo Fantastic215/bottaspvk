@@ -112,7 +112,7 @@ while True:
                             send(str(exe), peer_id)
 
 
-                elif s == '/info' or s=='Расписание, /info':
+                elif s == '/info' or s=='Расписание /info':
                     send('бота написал\n'
                          'https://vk.com/fantasticfeed\n'
                          '____________________________\n'
@@ -124,7 +124,7 @@ while True:
                     send('разработка...', peer_id)
 
                 
-                elif s == '/rasp' or s=='Расписание, /rasp':
+                elif s == '/rasp' or s=='Расписание /rasp':
                     try:
                         
                         a = vk_session.method("photos.getMessagesUploadServer")
