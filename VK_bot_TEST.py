@@ -124,7 +124,7 @@ while True:
                     send('разработка...', peer_id)
 
                 
-                elif s == '/rasp' or s=='@club194277538 /rasp':
+                elif s == '/rasp' or s=='Расписание, /rasp':
                     try:
                         
                         a = vk_session.method("photos.getMessagesUploadServer")
